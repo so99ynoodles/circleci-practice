@@ -11,7 +11,7 @@ node: &node
   working_directory: ~/repo
   executor:
     name: node/default
-    tag: '12.16.0'
+    tag: "12.16.0"
 
 # オーブ
 orbs:
@@ -24,9 +24,17 @@ jobs:
     <<: *node
     steps:
       - run: echo "<< parameters.message >>"
+  goodbye:
+    <<: *defaults
+    <<: *node
+    steps:
+      - run: echo "<< parameters.message >>"
 
 # ワークフロー
 workflows:
   hello-workflow:
     jobs:
       - hello
+  goodbye-workflow:
+    jobs:
+      - goodbye
